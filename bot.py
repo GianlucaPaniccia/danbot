@@ -1,4 +1,4 @@
-import discord
+import bot
 from discord.ext import commands
 import sqlite3
 import os
@@ -21,7 +21,7 @@ def init_db():
 init_db()
 
 # 2. Bot Configuration
-intents = discord.Intents.default()
+intents = bot.Intents.default()
 intents.message_content = True  # Required to read message content
 bot = commands.Bot(command_prefix="!", intents=intents)
 
