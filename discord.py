@@ -6,7 +6,7 @@ import os
 
 # 1. Setup the Database
 def init_db():
-    conn = sqlite3.connect('quotes.db')
+    conn = sqlite3.connect('/app/data/quotes.db')
     cursor = conn.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS quotes (
@@ -34,7 +34,7 @@ async def on_ready():
 @bot.command()
 async def addquote(ctx, content: str, *, author: str = "Unknown"):
     """Usage: !addquote "The quote text" Author Name"""
-    conn = sqlite3.connect('quotes.db')
+    conn = sqlite3.connect('/app/data/quotes.db')
     cursor = conn.cursor()
     cursor.execute(
         'INSERT INTO quotes (content, author, submitted_by) VALUES (?, ?, ?)',
@@ -48,7 +48,7 @@ async def addquote(ctx, content: str, *, author: str = "Unknown"):
 @bot.command()
 async def quote(ctx):
     """Usage: !quote"""
-    conn = sqlite3.connect('quotes.db')
+    conn = sqlite3.connect('/app/data/quotes.db')
     cursor = conn.cursor()
     cursor.execute('SELECT content, author FROM quotes ORDER BY RANDOM() LIMIT 1')
     row = cursor.fetchone()
